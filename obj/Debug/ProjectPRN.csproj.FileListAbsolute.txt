@@ -1,0 +1,12 @@
+D:\C#\ProjectPRN\bin\Debug\ProjectPRN.exe.config
+D:\C#\ProjectPRN\bin\Debug\ProjectPRN.exe
+D:\C#\ProjectPRN\bin\Debug\ProjectPRN.pdb
+D:\C#\ProjectPRN\obj\Debug\ProjectPRN.csprojAssemblyReference.cache
+D:\C#\ProjectPRN\obj\Debug\ProjectPRN.fLogin.resources
+D:\C#\ProjectPRN\obj\Debug\ProjectPRN.Properties.Resources.resources
+D:\C#\ProjectPRN\obj\Debug\ProjectPRN.csproj.GenerateResource.cache
+D:\C#\ProjectPRN\obj\Debug\ProjectPRN.csproj.CoreCompileInputs.cache
+D:\C#\ProjectPRN\obj\Debug\ProjectPRN.exe
+D:\C#\ProjectPRN\obj\Debug\ProjectPRN.pdb
+D:\C#\ProjectPRN\obj\Debug\ProjectPRN.fManager.resources
+D:\C#\ProjectPRN\obj\Debug\ProjectPRN.fAccount.resources
