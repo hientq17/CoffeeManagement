@@ -140,7 +140,9 @@
     <Compile Include="fOrder.Designer.cs">
       <DependentUpon>fOrder.cs</DependentUpon>
     </Compile>
-    <Compile Include="fKitchen.cs" />
+    <Compile Include="fKitchen.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="fKitchen.designer.cs">
       <DependentUpon>fKitchen.cs</DependentUpon>
     </Compile>
