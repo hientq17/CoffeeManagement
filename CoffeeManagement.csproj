@@ -98,12 +98,6 @@
     <Compile Include="changeInformation.Designer.cs">
       <DependentUpon>changeInformation.cs</DependentUpon>
     </Compile>
-    <Compile Include="changePassword.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="changePassword.Designer.cs">
-      <DependentUpon>changePassword.cs</DependentUpon>
-    </Compile>
     <Compile Include="DAO\AccountDAO.cs" />
     <Compile Include="DAO\CoffeeTableDAO.cs" />
     <Compile Include="DAO\ConnectDB.cs" />
@@ -150,9 +144,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="changeInformation.resx">
       <DependentUpon>changeInformation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="changePassword.resx">
-      <DependentUpon>changePassword.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fAccount.resx">
       <DependentUpon>fAccount.cs</DependentUpon>
