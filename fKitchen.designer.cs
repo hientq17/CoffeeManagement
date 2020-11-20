@@ -44,6 +44,7 @@
             this.thôngTinTàiKhoảnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.flpTable = new System.Windows.Forms.FlowLayoutPanel();
             this.btnHoanThanh = new System.Windows.Forms.Button();
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -66,11 +67,12 @@
             // columnHeader4
             // 
             this.columnHeader4.Text = "Thành tiền";
-            this.columnHeader4.Width = 96;
+            this.columnHeader4.Width = 0;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Đơn giá";
+            this.columnHeader3.Width = 0;
             // 
             // columnHeader2
             // 
@@ -98,7 +100,8 @@
             this.columnHeader2,
             this.columnHeader3,
             this.columnHeader4,
-            this.ID});
+            this.ID,
+            this.columnHeader5});
             this.listViewInvoice.FullRowSelect = true;
             this.listViewInvoice.GridLines = true;
             this.listViewInvoice.HideSelection = false;
@@ -113,14 +116,14 @@
             // đăngXuấtToolStripMenuItem
             // 
             this.đăngXuấtToolStripMenuItem.Name = "đăngXuấtToolStripMenuItem";
-            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(220, 26);
             this.đăngXuấtToolStripMenuItem.Text = "Đăng xuất";
             this.đăngXuấtToolStripMenuItem.Click += new System.EventHandler(this.đăngXuấtToolStripMenuItem_Click);
             // 
             // thôngTinToolStripMenuItem
             // 
             this.thôngTinToolStripMenuItem.Name = "thôngTinToolStripMenuItem";
-            this.thôngTinToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.thôngTinToolStripMenuItem.Size = new System.Drawing.Size(220, 26);
             this.thôngTinToolStripMenuItem.Text = "Thông tin tài khoản";
             this.thôngTinToolStripMenuItem.Click += new System.EventHandler(this.thôngTinToolStripMenuItem_Click);
             // 
@@ -176,13 +179,18 @@
             // btnHoanThanh
             // 
             this.btnHoanThanh.Location = new System.Drawing.Point(628, 378);
-            this.btnHoanThanh.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnHoanThanh.Margin = new System.Windows.Forms.Padding(4);
             this.btnHoanThanh.Name = "btnHoanThanh";
             this.btnHoanThanh.Size = new System.Drawing.Size(119, 41);
             this.btnHoanThanh.TabIndex = 8;
             this.btnHoanThanh.Text = "Hoàn Thành";
             this.btnHoanThanh.UseVisualStyleBackColor = true;
+            this.btnHoanThanh.Visible = false;
             this.btnHoanThanh.Click += new System.EventHandler(this.btnHoanThanh_Click);
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Số bàn";
             // 
             // fKitchen
             // 
@@ -194,7 +202,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "fKitchen";
             this.Text = "Kitchen";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fKitchen_FormClosing);
@@ -226,5 +234,6 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem thôngTinTàiKhoảnToolStripMenuItem;
         private System.Windows.Forms.Button btnHoanThanh;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
     }
 }

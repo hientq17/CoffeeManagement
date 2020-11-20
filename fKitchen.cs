@@ -30,9 +30,15 @@ namespace CoffeeManagement {
         private void LoadTable() {
             flpTable.Controls.Clear();
             List<CoffeeTable> tableList = CoffeeTableDAO.Instance.LoadTableList();
+            Button btnAll = new Button() { Width = CoffeeTableDAO.TableWidth, Height = CoffeeTableDAO.TableHeight };
+            btnAll.Text = "Tất cả";
+            btnAll.Click += btnAll_Click;
+            btnAll.Tag = tableList;
+            btnAll.BackColor = Color.Red;
+            flpTable.Controls.Add(btnAll);
             foreach (CoffeeTable item in tableList) {
                 if (item.Status.Equals("Đang đợi")) {
-
+                    
                     Button btn = new Button() { Width = CoffeeTableDAO.TableWidth, Height = CoffeeTableDAO.TableHeight };
                     btn.Text = item.ID + Environment.NewLine + item.Status;
                     btn.Click += btnTable_Click;
@@ -55,6 +61,7 @@ namespace CoffeeManagement {
                 lsvItem.SubItems.Add(item.Price.ToString());
                 lsvItem.SubItems.Add(item.TotalPrice.ToString());
                 lsvItem.SubItems.Add(item.ProductId.ToString());
+                lsvItem.SubItems.Add(id.ToString());
                 listViewInvoice.Items.Add(lsvItem);
             }
 
@@ -76,11 +83,34 @@ namespace CoffeeManagement {
         #region event
 
         private void btnTable_Click(object sender, EventArgs e) {
-
+            btnHoanThanh.Visible = true;
             int tableID = ((sender as Button).Tag as CoffeeTable).ID;
-            string status = ((sender as Button).Tag as CoffeeTable).Status;
+            lbTable.Text = "Tất cả";
+
             ShowBill(tableID);
 
+        }
+
+        private void btnAll_Click(object sender, EventArgs e)
+        {
+            btnHoanThanh.Visible = false;
+            List<CoffeeTable> listCoffeeTable= ((sender as Button).Tag as List<CoffeeTable>);
+            listViewInvoice.Items.Clear();
+            foreach (CoffeeTable item in listCoffeeTable)
+            {
+                int invoiceID = InvoiceDAO.Instance.GetUncheckoutInvoiceIDByTableID(item.ID);
+                List<InvoiceDetail> listInvoiceDetail = InvoiceDetailDAO.Instance.GetListInvoiceDetailByTable(invoiceID);
+                foreach (InvoiceDetail invoiceDetail in listInvoiceDetail)
+                {
+                    ListViewItem lsvItem = new ListViewItem(invoiceDetail.ProductName.ToString());
+                    lsvItem.SubItems.Add(invoiceDetail.Count.ToString());
+                    lsvItem.SubItems.Add(invoiceDetail.Price.ToString());
+                    lsvItem.SubItems.Add(invoiceDetail.TotalPrice.ToString());
+                    lsvItem.SubItems.Add(invoiceDetail.ProductId.ToString());
+                    lsvItem.SubItems.Add(item.ID.ToString());
+                    listViewInvoice.Items.Add(lsvItem);
+                }
+            }
         }
 
         private void đăngXuấtToolStripMenuItem_Click(object sender, EventArgs e) {

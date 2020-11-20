@@ -11,7 +11,7 @@ using CoffeeManagement.DTO;
 namespace CoffeeManagement.DAO {
     class ProductDAO {
 
-        public static int ProductWidth = 100;
+        public static int ProductWidth = 90;
         public static int ProductHeight = 90;
 
         private static ProductDAO instance;
