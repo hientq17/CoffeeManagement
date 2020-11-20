@@ -61,6 +61,16 @@ namespace CoffeeManagement.DAO
             return accountList;
         }
 
+        public List<Account> getCashiers() {
+            List<Account> cashierList = new List<Account>();
+            string query = "Select * from Employee where employeeStatus = 1 and roleId = 1";
+            DataTable data = ConnectDB.Instance.ExecuteQuery(query);
+            for (int i = 0; i < data.Rows.Count; i++) {
+                cashierList.Add(new Account(data.Rows[i]));
+            }
+            return cashierList;
+        }
+
         public DataTable getDataTableEmployees() {
             string query = "Select * from Employee where roleId = 1 or roleId = 2 and employeeStatus = 1";
             DataTable employeeList = ConnectDB.Instance.ExecuteQuery(query);
