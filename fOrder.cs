@@ -141,7 +141,7 @@ namespace CoffeeManagement
             }
             foreach (Product item in listProduct)
             {
-                FlowLayoutPanel panel = new FlowLayoutPanel() { Width = ProductDAO.ProductWidth, Height = ProductDAO.ProductHeight+40 };
+                FlowLayoutPanel panel = new FlowLayoutPanel() { Width = ProductDAO.ProductWidth+5, Height = ProductDAO.ProductHeight+40 };
                 Button btn = new Button() { Width = ProductDAO.ProductWidth, Height = ProductDAO.ProductHeight };
                 Label label = new Label() { Width = ProductDAO.ProductWidth, Height = 40 };
                 label.Text = item.ProductName + Environment.NewLine + item.UnitPrice + " VND";

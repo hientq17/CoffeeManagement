@@ -40,6 +40,10 @@ namespace CoffeeManagement
             string nickName = txtName.Text;
             if (oldPass.Equals(""))
                 MessageBox.Show("Nhập mật khẩu");
+            else if (nickName.Equals(""))
+            {
+                MessageBox.Show("Tên không được để trống!!!");
+            }
             else if (string.Compare(oldPass, verifyPass) != 0)
                 MessageBox.Show("Sai mật khẩu");
             else
@@ -53,12 +57,19 @@ namespace CoffeeManagement
                     if (dr == DialogResult.Yes)
                     {
                         if (newPass.Equals("") && newPassAgain.Equals(""))
+                        {
                             if (DAO.AccountDAO.Instance.UpdateAccount(username, oldPass, nickName) != false)
                                 MessageBox.Show("Update thành công!");
                             else
                                 MessageBox.Show("Update thất bại!");
+                        }
                         else
                         {
+                            if (newPass.Length < 8)
+                            {
+                                MessageBox.Show("Độ dài mật khẩu phải lớn hơn hoặc bằng 8!!!");
+                                return;
+                            }
                             if (DAO.AccountDAO.Instance.UpdateAccount(username, newPass, nickName) != false)
                                 MessageBox.Show("Update thành công!");
                             else
