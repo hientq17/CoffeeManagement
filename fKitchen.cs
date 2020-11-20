@@ -121,16 +121,5 @@ namespace CoffeeManagement {
         }
         #endregion
 
-        private void btnHoanThanh_Click(object sender, EventArgs e) {
-            int tableID = Convert.ToInt32(lbTable.Text.Substring(4));
-
-            int invoiceId = InvoiceDAO.Instance.GetUncheckoutInvoiceIDByTableID(tableID);
-
-            if (CoffeeTableDAO.Instance.UpdateTable(tableID) != false &&
-            InvoiceDAO.Instance.UpdateInvoice(invoiceId) != false) {
-                MessageBox.Show("Hoan thanh bill");
-                LoadTableByCategory("Đang đợi");
-            }
-        }
     }
 }
