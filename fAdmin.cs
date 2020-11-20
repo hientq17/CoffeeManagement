@@ -561,7 +561,8 @@ namespace CoffeeManagement
         }
 
         private void btnChangeInformation_Click(object sender, EventArgs e) {
-
+            changeInformation changeInformation = new changeInformation();
+            changeInformation.Show();
         }
 
         private void btnChangePassword_Click(object sender, EventArgs e) {

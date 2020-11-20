@@ -41,6 +41,39 @@ namespace CoffeeManagement.DAO
             return null;
         }
 
+        public Account GetAdmin() {
+            string query = "Select * from Employee where roleId = 0";
+            DataTable data = ConnectDB.Instance.ExecuteQuery(query);
+            if (data.Rows.Count != 0) {
+                Account account = new Account(data.Rows[0]);
+                return account;
+            }
+            return null;
+        }
+
+        public bool UpdateAdmin(string empName = null, string newPass = null) {
+            bool result = false;
+            string query;
+            MySqlParameter[] parameters;
+            if (newPass == null) {
+                query = "update Employee set employeeName= @employeeName where roleId = 0";
+                parameters = new MySqlParameter[1];
+                parameters[0] = new MySqlParameter("@employeeName", MySqlDbType.VarChar);
+                parameters[0].Value = empName;
+            } else {
+                query = "update Employee set password= @password , employeeName= @employeeName where roleId = 0";
+                parameters = new MySqlParameter[2];
+                parameters[0] = new MySqlParameter("@password", MySqlDbType.VarChar);
+                parameters[0].Value = newPass;
+                parameters[1] = new MySqlParameter("@employeeName", MySqlDbType.VarChar);
+                parameters[1].Value = empName;
+            }
+            int data = ConnectDB.Instance.ExecuteNonQuery(query, parameters);
+            if (data != 0)
+                result = true;
+            return result;
+        }
+
         public bool UpdateAccount(string username, string newPass, string empName) {
             bool result = false;
             string query = "update Employee set password= @password , employeeName= @employeeName where employeeUser=N'" + username + "'";
