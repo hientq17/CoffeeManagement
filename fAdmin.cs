@@ -24,7 +24,7 @@ namespace CoffeeManagement
             InitializeComponent();
             dataGridViewInvoice.Columns[2].DefaultCellStyle.Format = "dd-MM-yyyy";
             loadInvoice();
-            loadComboboxInvoice();
+            loadComboboxCashier();
             loadProducts();
             loadComboboxProductType();
             loadProductType();
@@ -47,11 +47,11 @@ namespace CoffeeManagement
 
         }
 
-        private void loadComboboxInvoice() {
+        private void loadComboboxCashier() {
             cbbEmployee.Items.Clear();
             cbbEmployee.Items.Add("Tất cả");
             cbbEmployee.SelectedIndex = 0;
-            List<Account> employeeList = AccountDAO.Instance.getEmployees();
+            List<Account> employeeList = AccountDAO.Instance.getCashiers();
             foreach (Account emp in employeeList) {
                 cbbEmployee.Items.Add(emp);
             }
@@ -168,6 +168,7 @@ namespace CoffeeManagement
             txtProductId.Text = "";
             txtProductName.Text = "";
             txtProductPrice.Text = "";
+            pbProductImage.Image = null;
             cbbProductType.SelectedIndex = -1;
             btnOKProduct.Tag = "Add";
             txtProductName.Enabled = true;
@@ -347,6 +348,7 @@ namespace CoffeeManagement
                 if (ProductDAO.Instance.addProductType(typeName) > 0) {
                     MessageBox.Show("Thêm loại sản phẩm mới thành công");
                     loadProductType();
+                    loadProducts();
                     loadComboboxProductType();
                     resetProductTypeComponents();
                 } else {
@@ -357,6 +359,7 @@ namespace CoffeeManagement
                 if (ProductDAO.Instance.editProductType(typeName, typeId) > 0) {
                     MessageBox.Show("Cập nhật loại sản phẩm thành công!");
                     loadProductType();
+                    loadProducts();
                     loadComboboxProductType();
                     resetProductTypeComponents();
                 } else {
@@ -436,7 +439,7 @@ namespace CoffeeManagement
                 if (AccountDAO.Instance.deleteEmployee(txtEmployeeUser.Text) > 0) {
                     MessageBox.Show("Xóa nhân viên thành công!");
                     loadEmployees();
-                    loadComboboxInvoice();
+                    loadComboboxCashier();
                     resetEmployeeComponents();
                 } else {
                     MessageBox.Show("Có lỗi xảy ra!");
@@ -462,7 +465,7 @@ namespace CoffeeManagement
                 if (AccountDAO.Instance.addEmployee(empUser, password, emplName, roleId) > 0) {
                     MessageBox.Show("Thêm nhân viên thành công");
                     loadEmployees();
-                    loadComboboxInvoice();
+                    loadComboboxCashier();
                     resetEmployeeComponents();
                 } else {
                     MessageBox.Show("Có lỗi xảy ra!");
@@ -472,7 +475,7 @@ namespace CoffeeManagement
                 if (AccountDAO.Instance.editEmployee(empUser, password, emplName, roleId) > 0) {
                     MessageBox.Show("Cập nhật nhân viên thành công!");
                     loadEmployees();
-                    loadComboboxInvoice();
+                    loadComboboxCashier();
                     resetEmployeeComponents();
                 } else {
                     MessageBox.Show("Có lỗi xảy ra!");

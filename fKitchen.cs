@@ -27,13 +27,12 @@ namespace CoffeeManagement {
 
         #region method
 
-
         private void LoadTable() {
-
             flpTable.Controls.Clear();
             List<CoffeeTable> tableList = CoffeeTableDAO.Instance.LoadTableList();
             foreach (CoffeeTable item in tableList) {
                 if (item.Status.Equals("Đang đợi")) {
+
                     Button btn = new Button() { Width = CoffeeTableDAO.TableWidth, Height = CoffeeTableDAO.TableHeight };
                     btn.Text = item.ID + Environment.NewLine + item.Status;
                     btn.Click += btnTable_Click;
@@ -68,7 +67,6 @@ namespace CoffeeManagement {
             timer1.Tick += new System.EventHandler(timer1_Tick);
             timer1.Start();
         }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             LoadTable();
@@ -84,6 +82,7 @@ namespace CoffeeManagement {
             ShowBill(tableID);
 
         }
+
         private void đăngXuấtToolStripMenuItem_Click(object sender, EventArgs e) {
             this.Close();
         }
@@ -118,9 +117,20 @@ namespace CoffeeManagement {
             DialogResult dr = MessageBox.Show("Bạn muốn đăng xuất ?", "Title", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             if (dr == DialogResult.No)
                 e.Cancel = true;
+
         }
         #endregion
 
+        private void btnHoanThanh_Click(object sender, EventArgs e) {
+            int tableID = Convert.ToInt32(lbTable.Text.Substring(4));
 
+            int invoiceId = InvoiceDAO.Instance.GetUncheckoutInvoiceIDByTableID(tableID);
+
+            if (CoffeeTableDAO.Instance.UpdateTable(tableID) != false &&
+            InvoiceDAO.Instance.UpdateInvoice(invoiceId) != false) {
+                MessageBox.Show("Hoan thanh bill");
+                LoadTableByCategory("Đang đợi");
+            }
+        }
     }
 }
