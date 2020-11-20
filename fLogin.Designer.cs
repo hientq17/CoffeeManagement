@@ -28,13 +28,13 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtLogin = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtPassword = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
-            this.txtPassword = new System.Windows.Forms.TextBox();
-            this.txtLogin = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -47,6 +47,13 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(608, 73);
             this.panel1.TabIndex = 0;
+            // 
+            // txtLogin
+            // 
+            this.txtLogin.Location = new System.Drawing.Point(197, 28);
+            this.txtLogin.Name = "txtLogin";
+            this.txtLogin.Size = new System.Drawing.Size(365, 22);
+            this.txtLogin.TabIndex = 1;
             // 
             // label1
             // 
@@ -66,6 +73,14 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(608, 73);
             this.panel2.TabIndex = 1;
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Location = new System.Drawing.Point(197, 28);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(365, 22);
+            this.txtPassword.TabIndex = 1;
             // 
             // label2
             // 
@@ -98,21 +113,6 @@
             this.btnExit.Text = "Thoát";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.Location = new System.Drawing.Point(197, 28);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(365, 22);
-            this.txtPassword.TabIndex = 1;
-            // 
-            // txtLogin
-            // 
-            this.txtLogin.Location = new System.Drawing.Point(197, 28);
-            this.txtLogin.Name = "txtLogin";
-            this.txtLogin.Size = new System.Drawing.Size(365, 22);
-            this.txtLogin.TabIndex = 1;
             // 
             // fLogin
             // 

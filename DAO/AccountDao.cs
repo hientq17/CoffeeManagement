@@ -44,8 +44,12 @@ namespace CoffeeManagement.DAO
         public bool UpdateAccount(string username, string newPass, string empName) {
             bool result = false;
             string query = "update Employee set password= @password , employeeName= @employeeName where employeeUser=N'" + username + "'";
-            Object[] Parameters = { newPass, empName };
-            int data = ConnectDB.Instance.ExecuteNonQuery(query, Parameters);
+            MySqlParameter[] parameters = new MySqlParameter[4];
+            parameters[0] = new MySqlParameter("@password", MySqlDbType.VarChar);
+            parameters[0].Value = newPass;
+            parameters[1] = new MySqlParameter("@employeeName", MySqlDbType.VarChar);
+            parameters[1].Value = empName;
+            int data = ConnectDB.Instance.ExecuteNonQuery(query, parameters);
             if (data != 0)
                 result = true;
             return result;

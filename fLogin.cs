@@ -55,6 +55,15 @@ namespace CoffeeManagement
                     txtLogin.Text = "";     
                     this.Show();
                     break;
+                case 2:
+                    fKitchen fkitchen = new fKitchen(username);
+                    fkitchen.Text = "Hello " + username;
+                    this.Hide();
+                    fkitchen.ShowDialog();
+                    txtPassword.Text = "";
+                    txtLogin.Text = "";
+                    this.Show();
+                    break;
                 default:
                     MessageBox.Show("Sai tên tài khoản hoặc mật khẩu");
                     break;

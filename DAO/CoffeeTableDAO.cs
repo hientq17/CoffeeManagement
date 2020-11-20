@@ -1,4 +1,5 @@
 ﻿using CoffeeManagement.DTO;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -41,8 +42,10 @@ namespace CoffeeManagement.DAO
             bool result = false;
             List<CoffeeTable> tableList = new List<CoffeeTable>();
             string query = "Update CoffeeTable set tableStatus= 0 where tableId= @tableId";
-            Object[] Parameters = { tableID };
-            int data = ConnectDB.Instance.ExecuteNonQuery(query, Parameters);
+            MySqlParameter[] parameters = new MySqlParameter[1];
+            parameters[0] = new MySqlParameter("@tableId", MySqlDbType.Int32);
+            parameters[0].Value = tableID;
+            int data = ConnectDB.Instance.ExecuteNonQuery(query, parameters);
             if (data != 0)
                 result = true;
             return result;

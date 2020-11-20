@@ -33,11 +33,5 @@ namespace CoffeeManagement.DAO
             }
             return listInvoiceDetail;
         }
-
-        public void InsertInvoiceDetail()
-        {
-            
-            
-        }
     }
 }

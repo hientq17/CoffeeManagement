@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -66,6 +67,34 @@ namespace CoffeeManagement
 
         }
 
+        private void LoadTableRefresh()
+        {
+            btnCancel.Visible = false;
+            btnConfirm.Visible = false;
+            btnAdd.Visible = false;
+            nmFoodCount.Visible = false;
+            cbxCategory.Visible = false;
+            flpTable.Controls.Clear();
+            foreach (CoffeeTable item in tableList)
+            {
+                Button btn = new Button() { Width = CoffeeTableDAO.TableWidth, Height = CoffeeTableDAO.TableHeight };
+                btn.Text = item.ID + Environment.NewLine + item.Status;
+                btn.Click += btnTable_Click;
+                btn.Tag = item;
+                if (item.Status.Equals("Trống"))
+                {
+                    btn.BackColor = Color.Aqua;
+                    listViewInvoice.Items.Clear();
+                }
+                else
+                {
+                    btn.BackColor = Color.LightPink;
+                }
+                flpTable.Controls.Add(btn);
+            }
+
+        }
+
         //private void LoadTableByCategory(string category)
         //{
         //    flpTable.Controls.Clear();
@@ -112,11 +141,20 @@ namespace CoffeeManagement
             }
             foreach (Product item in listProduct)
             {
+                FlowLayoutPanel panel = new FlowLayoutPanel() { Width = ProductDAO.ProductWidth, Height = ProductDAO.ProductHeight+40 };
                 Button btn = new Button() { Width = ProductDAO.ProductWidth, Height = ProductDAO.ProductHeight };
-                btn.Text = item.ProductName + Environment.NewLine + item.UnitPrice + " VND";
+                Label label = new Label() { Width = ProductDAO.ProductWidth, Height = 40 };
+                label.Text = item.ProductName + Environment.NewLine + item.UnitPrice + " VND";
+                byte[] img = item.ProductImg;
+                MemoryStream ms = new MemoryStream(img);
+                btn.Image = Image.FromStream(ms);
+                btn.ImageAlign = ContentAlignment.MiddleCenter;
+                btn.TextAlign = ContentAlignment.BottomCenter;
                 btn.Click += btnProduct_Click;
-                flpTable.Controls.Add(btn);
                 btn.Tag = item;
+                panel.Controls.Add(btn);
+                panel.Controls.Add(label);
+                flpTable.Controls.Add(panel);
             }
         }
 
@@ -128,11 +166,20 @@ namespace CoffeeManagement
                 string typeName = ProductDAO.Instance.getTypeNameByTypeId(item.TypeId);
                 if (typeName.Equals(category))
                 {
+                    FlowLayoutPanel panel = new FlowLayoutPanel() { Width = ProductDAO.ProductWidth, Height = ProductDAO.ProductHeight + 40 };
                     Button btn = new Button() { Width = ProductDAO.ProductWidth, Height = ProductDAO.ProductHeight };
-                    btn.Text = item.ProductName + Environment.NewLine + item.UnitPrice + " VND";
+                    Label label = new Label() { Width = ProductDAO.ProductWidth, Height = 40 };
+                    label.Text = item.ProductName + Environment.NewLine + item.UnitPrice + " VND";
+                    byte[] img = item.ProductImg;
+                    MemoryStream ms = new MemoryStream(img);
+                    btn.Image = Image.FromStream(ms);
+                    btn.ImageAlign = ContentAlignment.MiddleCenter;
+                    btn.TextAlign = ContentAlignment.BottomCenter;
                     btn.Click += btnProduct_Click;
-                    flpTable.Controls.Add(btn);
                     btn.Tag = item;
+                    panel.Controls.Add(btn);
+                    panel.Controls.Add(label);
+                    flpTable.Controls.Add(panel);
                 }
             }
         }
@@ -144,7 +191,7 @@ namespace CoffeeManagement
             {
                 productAmount = int.Parse(item.SubItems[1].Text);
                 productId = int.Parse(item.SubItems[4].Text);
-                MySqlCommand cmd = new MySqlCommand("insert_InvoiceDetail", ConnectDB.Instance.OpenConnection());
+                MySqlCommand cmd = new MySqlCommand("insert_InvoiceDetail", new ConnectDB().OpenConnection());
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add(new MySqlParameter("@invoiceId", invoiceId));
                 cmd.Parameters.Add(new MySqlParameter("@productId", productId));
@@ -167,7 +214,7 @@ namespace CoffeeManagement
             if (!cbxCategory.Visible)
             {
                 tableList = CoffeeTableDAO.Instance.LoadTableList();
-                LoadTable();
+                LoadTableRefresh();
             } 
         }
         #endregion

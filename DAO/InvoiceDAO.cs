@@ -49,9 +49,11 @@ namespace CoffeeManagement.DAO
 
         public bool UpdateInvoice(int invoiceId) {
             bool result = false;
-            string query = "Update Invoice set invoiceStatus= 0 where invoiceId= @invoiceId";
-            Object[] Parameters = { invoiceId };
-            int data = ConnectDB.Instance.ExecuteNonQuery(query, Parameters);
+            string query = "Update Invoice set invoiceStatus= 0 where invoiceId= @invoice";
+            MySqlParameter[] parameters = new MySqlParameter[1];
+            parameters[0] = new MySqlParameter("@invoiceId", MySqlDbType.Int32);
+            parameters[0].Value = invoiceId;
+            int data = ConnectDB.Instance.ExecuteNonQuery(query, parameters);
             if (data != 0)
                 result = true;
             return result;
