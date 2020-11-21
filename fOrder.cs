@@ -88,10 +88,15 @@ namespace CoffeeManagement
                 }
                 else
                 {
-                    btn.BackColor = Color.LightPink;
+                    btn.BackColor = Color.LightPink;  
                 }
                 flpTable.Controls.Add(btn);
             }
+            string tableName = lbTable.Text.Replace("Bàn ","");
+            try {
+                int currentTable = Int32.Parse(tableName);
+                ShowBill(currentTable);
+            } catch (Exception ex) { };
 
         }
 
