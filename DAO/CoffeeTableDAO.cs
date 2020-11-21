@@ -38,6 +38,19 @@ namespace CoffeeManagement.DAO
             return tableList;
         }
 
+        public List<CoffeeTable> LoadTableListOrderByTime() {
+            List<CoffeeTable> tableList = new List<CoffeeTable>();
+            string query = "SELECT CoffeeTable.* FROM CoffeeTable inner join Invoice on CoffeeTable.tableId = Invoice.tableId" +
+                " where invoiceStatus=1 order by invoiceId";
+            DataTable data = ConnectDB.Instance.ExecuteQuery(query);
+            foreach (DataRow item in data.Rows) {
+                CoffeeTable table = new CoffeeTable(item);
+                tableList.Add(table);
+            }
+
+            return tableList;
+        }
+
         public bool UpdateTable(int tableID) {
             bool result = false;
             List<CoffeeTable> tableList = new List<CoffeeTable>();

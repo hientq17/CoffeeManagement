@@ -157,7 +157,6 @@ D:\Code\C#\CoffeeManagement\bin\Debug\System.Numerics.Vectors.xml
 D:\Code\C#\CoffeeManagement\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 D:\Code\C#\CoffeeManagement\obj\Debug\CoffeeManagement.csprojAssemblyReference.cache
 D:\Code\C#\CoffeeManagement\obj\Debug\CoffeeManagement.changeInformation.resources
-D:\Code\C#\CoffeeManagement\obj\Debug\CoffeeManagement.changePassword.resources
 D:\Code\C#\CoffeeManagement\obj\Debug\CoffeeManagement.fAccount.resources
 D:\Code\C#\CoffeeManagement\obj\Debug\CoffeeManagement.fAdmin.resources
 D:\Code\C#\CoffeeManagement\obj\Debug\CoffeeManagement.fLogin.resources
