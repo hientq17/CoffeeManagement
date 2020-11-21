@@ -14,6 +14,7 @@ using System.Windows.Forms;
 namespace CoffeeManagement {
     public partial class fKitchen : Form {
         private string username;
+        Button btnAll;
 
         private void flpTable_Paint(object sender, PaintEventArgs e) {
 
@@ -30,7 +31,7 @@ namespace CoffeeManagement {
         private void LoadTable() {
             flpTable.Controls.Clear();
             List<CoffeeTable> tableList = CoffeeTableDAO.Instance.LoadTableList();
-            Button btnAll = new Button() { Width = CoffeeTableDAO.TableWidth, Height = CoffeeTableDAO.TableHeight };
+            btnAll = new Button() { Width = CoffeeTableDAO.TableWidth, Height = CoffeeTableDAO.TableHeight };
             btnAll.Text = "Tất cả";
             btnAll.Click += btnAll_Click;
             btnAll.Tag = tableList;
@@ -70,7 +71,7 @@ namespace CoffeeManagement {
         public void autoRefresh()
         {
             Timer timer1 = new System.Windows.Forms.Timer();
-            timer1.Interval = 5000;//2 seconds
+            timer1.Interval = 5000;//5 seconds
             timer1.Tick += new System.EventHandler(timer1_Tick);
             timer1.Start();
         }
@@ -85,7 +86,7 @@ namespace CoffeeManagement {
         private void btnTable_Click(object sender, EventArgs e) {
             btnHoanThanh.Visible = true;
             int tableID = ((sender as Button).Tag as CoffeeTable).ID;
-            lbTable.Text = "Tất cả";
+            
 
             ShowBill(tableID);
 
@@ -93,6 +94,7 @@ namespace CoffeeManagement {
 
         private void btnAll_Click(object sender, EventArgs e)
         {
+            lbTable.Text = "Tất cả";
             btnHoanThanh.Visible = false;
             List<CoffeeTable> listCoffeeTable= ((sender as Button).Tag as List<CoffeeTable>);
             listViewInvoice.Items.Clear();
@@ -132,6 +134,8 @@ namespace CoffeeManagement {
                 MessageBox.Show("Hoàn thành bill!!");
                 LoadTable();
                 listViewInvoice.Items.Clear();
+                lbTable.Visible = false;
+                btnAll_Click(sender, e);
             }
         }
         private void thôngTinToolStripMenuItem_Click(object sender, EventArgs e)

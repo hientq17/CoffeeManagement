@@ -204,7 +204,7 @@ namespace CoffeeManagement
         public void autoRefresh()
         {
             Timer timer1 = new System.Windows.Forms.Timer();
-            timer1.Interval = 5000;//2 seconds
+            timer1.Interval = 5000;//5 seconds
             timer1.Tick += new System.EventHandler(timer1_Tick);
             timer1.Start();
         }
@@ -235,13 +235,18 @@ namespace CoffeeManagement
                 return;
             }
             double count = (double)nmFoodCount.Value;
+            double totalPayment = 0;
             if (count == 0)
             {
                 listViewInvoice.Items.Remove(listViewInvoice.SelectedItems[0]);
+                foreach (ListViewItem item in listViewInvoice.Items)
+                {
+                    totalPayment += double.Parse(item.SubItems[3].Text);
+                }
+                lbTotal.Text = totalPayment.ToString();
                 return;
             }
             double unitPrice = double.Parse(listViewInvoice.SelectedItems[0].SubItems[2].Text);
-            double totalPayment = 0;
             listViewInvoice.SelectedItems[0].SubItems[1].Text = count.ToString();
             listViewInvoice.SelectedItems[0].SubItems[3].Text = (count * unitPrice).ToString();
             foreach (ListViewItem item in listViewInvoice.Items)
@@ -308,7 +313,11 @@ namespace CoffeeManagement
 
         private void btnCheckOut_Click(object sender, EventArgs e)
         {
-
+            if (listViewInvoice.Items.Count < 1)
+            {
+                MessageBox.Show("Bill trống!!!");
+                return;
+            }
             int tableId = int.Parse(lbTable.Text.Substring(3));
             string date = DateTime.Now.ToString("yyyy-MM-dd");
             ConnectDB.Instance.ExecuteNonQuery("update CoffeeTable set tableStatus = 1 where tableId = '" + tableId + "'");
@@ -320,6 +329,7 @@ namespace CoffeeManagement
             listViewInvoice.Items.Clear();
             lbTable.Text = "";
             lbTotal.Text = "0";
+            MessageBox.Show("Order xong!");
         }
 
         private void listViewInvoice_SelectedIndexChanged(object sender, EventArgs e)
