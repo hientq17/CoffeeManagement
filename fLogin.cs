@@ -39,7 +39,7 @@ namespace CoffeeManagement
             {
                 case 0:
                     fAdmin fadmin = new fAdmin();
-                    fadmin.Text = "Hello Boss";
+                    fadmin.Text = "Quản lý";
                     this.Hide();
                     fadmin.ShowDialog();
                     txtPassword.Text = "";

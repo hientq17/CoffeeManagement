@@ -23,6 +23,7 @@ namespace CoffeeManagement
         public fAdmin() {
             InitializeComponent();
             dataGridViewInvoice.Columns[2].DefaultCellStyle.Format = "dd-MM-yyyy";
+            pbProductImage.Image = pbProductImage.InitialImage;
             loadInvoice();
             loadComboboxCashier();
             loadProducts();
@@ -168,7 +169,7 @@ namespace CoffeeManagement
             txtProductId.Text = "";
             txtProductName.Text = "";
             txtProductPrice.Text = "";
-            pbProductImage.Image = null;
+            pbProductImage.Image = pbProductImage.InitialImage;
             cbbProductType.SelectedIndex = -1;
             btnOKProduct.Tag = "Add";
             txtProductName.Enabled = true;
@@ -181,7 +182,8 @@ namespace CoffeeManagement
 
         private void btnEdit_Click(object sender, EventArgs e) {
             if (txtProductId.Text == "") {
-                MessageBox.Show("Vui lòng chọn 1 sản phẩm");
+                MessageBox.Show("Vui lòng chọn 1 sản phẩm!","Chưa chọn sản phẩm",
+                    MessageBoxButtons.OK,MessageBoxIcon.Warning);
                 return;
             }
             btnOKProduct.Tag = "Edit";
@@ -195,18 +197,20 @@ namespace CoffeeManagement
 
         private void btnDelete_Click(object sender, EventArgs e) {
             if (txtProductId.Text == "") {
-                MessageBox.Show("Vui lòng chọn 1 sản phẩm");
+                MessageBox.Show("Vui lòng chọn 1 sản phẩm!", "Chưa chọn sản phẩm",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
             DialogResult result = MessageBox.Show("Bạn có chắc muốn xóa sản phẩm này?",
-                "Xóa sản phẩm", buttons, MessageBoxIcon.Warning);
+                "Xóa sản phẩm", buttons, MessageBoxIcon.Question);
             if (result == DialogResult.Yes) {
                 if (ProductDAO.Instance.deleteProduct(Int32.Parse(txtProductId.Text)) > 0) {
-                    MessageBox.Show("Xóa sản phẩm thành công!");
+                    MessageBox.Show("Xóa sản phẩm thành công!","Thành công",
+                        MessageBoxButtons.OK,MessageBoxIcon.Information);
                     loadProducts();
                 } else {
-                    MessageBox.Show("Có lỗi xảy ra!");
+                    MessageBox.Show("Có lỗi xảy ra!","Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -222,11 +226,12 @@ namespace CoffeeManagement
                 double unitPrice = Double.Parse(txtProductPrice.Text);
                 int productTypeId = ((ProductType)cbbProductType.SelectedItem).ProductTypeId;
                 if (ProductDAO.Instance.addProduct(productName, unitPrice, productTypeId, img) > 0) {
-                    MessageBox.Show("Thêm sản phẩm mới thành công");
+                    MessageBox.Show("Thêm sản phẩm mới thành công!","Thành công", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     loadProducts();
                     resetProductComponents();
                 } else {
-                    MessageBox.Show("Có lỗi xảy ra!");
+                    MessageBox.Show("Có lỗi xảy ra!","Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             } else if (button.Tag.Equals("Edit")) {
                 string productName = txtProductName.Text;
@@ -234,11 +239,12 @@ namespace CoffeeManagement
                 int productTypeId = ((ProductType)cbbProductType.SelectedItem).ProductTypeId;
                 int productId = Int32.Parse(txtProductId.Text);
                 if (ProductDAO.Instance.editProduct(productName, unitPrice, productTypeId, img, productId) > 0) {
-                    MessageBox.Show("Cập nhật sản phẩm thành công!");
+                    MessageBox.Show("Cập nhật sản phẩm thành công!","Thành công",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     loadProducts();
                     resetProductComponents();
                 } else {
-                    MessageBox.Show("Có lỗi xảy ra!");
+                    MessageBox.Show("Có lỗi xảy ra!","Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -251,7 +257,7 @@ namespace CoffeeManagement
             txtProductId.Text = "";
             txtProductName.Text = "";
             txtProductPrice.Text = "";
-            pbProductImage.Image = null;
+            pbProductImage.Image = pbProductImage.InitialImage;
             cbbProductType.SelectedIndex = -1;
             txtProductName.Enabled = false;
             txtProductPrice.Enabled = false;
@@ -263,28 +269,33 @@ namespace CoffeeManagement
 
         private Boolean productValidation() {
             if (txtProductName.Text.Length == 0) {
-                MessageBox.Show("Vui lòng nhập vào tên sản phẩm!");
+                MessageBox.Show("Vui lòng nhập vào tên sản phẩm!","Chưa nhập tên sản phẩm",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.ActiveControl = txtProductName;
                 return false;
             }
             try {
                 double price = Double.Parse(txtProductPrice.Text);
                 if (price <= 0) {
-                    MessageBox.Show("Vui lòng nhập giá sản phẩm thích hợp!");
+                    MessageBox.Show("Vui lòng nhập giá sản phẩm hợp lệ!","Giá không hợp lệ",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     this.ActiveControl = txtProductPrice;
                     return false;
                 }
             } catch (Exception ex) {
-                MessageBox.Show("Vui lòng nhập giá sản phẩm thích hợp!");
+                MessageBox.Show("Vui lòng nhập giá sản phẩm hợp lệ!", "Giá không hợp lệ",
+                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.ActiveControl = txtProductPrice;
                 return false;
             }
             if (cbbProductType.SelectedIndex < 0) {
-                MessageBox.Show("Vui lòng chọn loại sản phẩm!");
+                MessageBox.Show("Vui lòng chọn loại sản phẩm!","Chưa chọn loại sản phẩm",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
-            if (pbProductImage.Image == null) {
-                MessageBox.Show("Vui lòng chọn hình ảnh cho sản phẩm!");
+            if (pbProductImage.Image == pbProductImage.InitialImage) {
+                MessageBox.Show("Vui lòng chọn hình ảnh cho sản phẩm!","Chưa chọn hình ảnh",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             return true;
@@ -308,7 +319,8 @@ namespace CoffeeManagement
 
         private void btnEditType_Click(object sender, EventArgs e) {
             if (txtTypeId.Text == "") {
-                MessageBox.Show("Vui lòng chọn 1 loại sản phẩm");
+                MessageBox.Show("Vui lòng chọn loại sản phẩm!", "Chưa chọn loại sản phẩm",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             txtTypeName.Enabled = true;
@@ -319,7 +331,8 @@ namespace CoffeeManagement
 
         private void btnDeleteType_Click(object sender, EventArgs e) {
             if (txtTypeId.Text == "") {
-                MessageBox.Show("Vui lòng chọn 1 loại sản phẩm");
+                MessageBox.Show("Vui lòng chọn 1 loại sản phẩm!", "Chưa chọn loại sản phẩm",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
@@ -328,10 +341,11 @@ namespace CoffeeManagement
                 "Xóa loại sản phẩm", buttons, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes) {
                 if (ProductDAO.Instance.deleteProductType(Int32.Parse(txtTypeId.Text)) > 0) {
-                    MessageBox.Show("Xóa loại sản phẩm thành công!");
+                    MessageBox.Show("Xóa loại sản phẩm thành công!", "Thành công", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     loadProductType();
                 } else {
-                    MessageBox.Show("Có lỗi xảy ra!");
+                     MessageBox.Show("Có lỗi xảy ra!","Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -339,31 +353,34 @@ namespace CoffeeManagement
         private void btnTypeOK_Click(object sender, EventArgs e) {
             string typeName = txtTypeName.Text;
             if (typeName.Length == 0) {
-                MessageBox.Show("Vui lòng nhập vào tên loại sản phẩm!");
+                MessageBox.Show("Vui lòng nhập vào tên loại sản phẩm!", "Chưa nhập tên loại sản phẩm",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.ActiveControl = txtTypeName;
                 return;
             }
             Button button = (Button)sender;
             if (button.Tag.Equals("Add")) {
                 if (ProductDAO.Instance.addProductType(typeName) > 0) {
-                    MessageBox.Show("Thêm loại sản phẩm mới thành công");
+                    MessageBox.Show("Thêm loại sản phẩm mới thành công!", "Thành công",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     loadProductType();
                     loadProducts();
                     loadComboboxProductType();
                     resetProductTypeComponents();
                 } else {
-                    MessageBox.Show("Có lỗi xảy ra!");
+                     MessageBox.Show("Có lỗi xảy ra!","Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             } else if (button.Tag.Equals("Edit")) {
                 int typeId = Int32.Parse(txtTypeId.Text);
                 if (ProductDAO.Instance.editProductType(typeName, typeId) > 0) {
-                    MessageBox.Show("Cập nhật loại sản phẩm thành công!");
+                    MessageBox.Show("Cập nhật loại sản phẩm thành công!", "Thành công",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     loadProductType();
                     loadProducts();
                     loadComboboxProductType();
                     resetProductTypeComponents();
                 } else {
-                    MessageBox.Show("Có lỗi xảy ra!");
+                     MessageBox.Show("Có lỗi xảy ra!","Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -429,20 +446,22 @@ namespace CoffeeManagement
 
         private void btnEmployeeDelete_Click(object sender, EventArgs e) {
             if (txtEmployeeUser.Text == "") {
-                MessageBox.Show("Vui lòng chọn 1 nhân viên");
+                MessageBox.Show("Vui lòng chọn 1 nhân viên","Chưa chọn nhân viên",
+                    MessageBoxButtons.OK,MessageBoxIcon.Warning);
                 return;
             }
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
             DialogResult result = MessageBox.Show("Bạn có chắc muốn xóa nhân viên này? \n" ,
-                "Xóa nhân viên", buttons, MessageBoxIcon.Warning);
+                "Xóa nhân viên", buttons, MessageBoxIcon.Question);
             if (result == DialogResult.Yes) {
                 if (AccountDAO.Instance.deleteEmployee(txtEmployeeUser.Text) > 0) {
-                    MessageBox.Show("Xóa nhân viên thành công!");
+                    MessageBox.Show("Xóa nhân viên thành công!","Thành công",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     loadEmployees();
                     loadComboboxCashier();
                     resetEmployeeComponents();
                 } else {
-                    MessageBox.Show("Có lỗi xảy ra!");
+                     MessageBox.Show("Có lỗi xảy ra!","Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -463,22 +482,24 @@ namespace CoffeeManagement
             if (button.Tag.Equals("Add")) {
                 if (!addEmployeeValidation()) return;
                 if (AccountDAO.Instance.addEmployee(empUser, password, emplName, roleId) > 0) {
-                    MessageBox.Show("Thêm nhân viên thành công");
+                    MessageBox.Show("Thêm nhân viên thành công!","Thành công",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     loadEmployees();
                     loadComboboxCashier();
                     resetEmployeeComponents();
                 } else {
-                    MessageBox.Show("Có lỗi xảy ra!");
+                     MessageBox.Show("Có lỗi xảy ra!","Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             } else if (button.Tag.Equals("Edit")) {
                 if (!editEmployeeValidation()) return;
                 if (AccountDAO.Instance.editEmployee(empUser, password, emplName, roleId) > 0) {
-                    MessageBox.Show("Cập nhật nhân viên thành công!");
+                    MessageBox.Show("Cập nhật nhân viên thành công!", "Thành công",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     loadEmployees();
                     loadComboboxCashier();
                     resetEmployeeComponents();
                 } else {
-                    MessageBox.Show("Có lỗi xảy ra!");
+                     MessageBox.Show("Có lỗi xảy ra!","Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -518,26 +539,31 @@ namespace CoffeeManagement
 
         private Boolean addEmployeeValidation() {
             if (txtEmployeeUser.Text.Length < 8) {
-                MessageBox.Show("Tài khoản phải bao gồm 8 kí tự trở lên!");
+                MessageBox.Show("Tên tài khoản phải bao gồm 8 kí tự trở lên!","Tên tài khoản không hợp lệ",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.ActiveControl = txtPassword;
                 return false;
             }
             if (AccountDAO.Instance.usernameExisted(txtEmployeeUser.Text)) {
-                MessageBox.Show("Tài khoản đã tồn tại!");
+                MessageBox.Show("Vui lòng chọn tên tài khoản khác!","Tên tài khoản đã tồn tại",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.ActiveControl = txtEmployeeUser;
                 return false;
             }
             if (txtPassword.Text.Length < 8) {
-                MessageBox.Show("Mật khẩu phải bao gồm 8 kí tự trở lên!");
+                MessageBox.Show("Mật khẩu phải bao gồm 8 kí tự trở lên!","Mật khẩu không hợp lệ",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.ActiveControl = txtPassword;
                 return false;
             }
             if (txtEmployeeName.Text.Length == 0) {
-                MessageBox.Show("Vui lòng nhập tên nhân viên!");
+                MessageBox.Show("Vui lòng nhập tên nhân viên!","Chưa nhập tên nhân viên",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             if (cbbEmployee.SelectedIndex < 0) {
-                MessageBox.Show("Vui lòng chọn chức vụ!");
+                MessageBox.Show("Vui lòng chọn chức vụ!","Chưa chọn chức vụ",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             return true;
@@ -545,16 +571,19 @@ namespace CoffeeManagement
 
         private Boolean editEmployeeValidation() {
             if (txtPassword.Text.Length < 8) {
-                MessageBox.Show("Mật khẩu phải bao gồm 8 kí tự trở lên!");
+                MessageBox.Show("Mật khẩu phải bao gồm 8 kí tự trở lên!", "Mật khẩu không hợp lệ",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.ActiveControl = txtPassword;
                 return false;
             }
             if (txtEmployeeName.Text.Length == 0) {
-                MessageBox.Show("Vui lòng nhập tên nhân viên!");
+                MessageBox.Show("Vui lòng nhập tên nhân viên!", "Chưa nhập tên nhân viên",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             if (cbbEmployee.SelectedIndex < 0) {
-                MessageBox.Show("Vui lòng chọn chức vụ!");
+                MessageBox.Show("Vui lòng chọn chức vụ!", "Chưa chọn chức vụ",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             return true;

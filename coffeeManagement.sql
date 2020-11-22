@@ -18,6 +18,7 @@ CREATE TABLE `Invoice` (
   `dateSale` date NOT NULL,
   `totalPayment` double DEFAULT NULL,
   `employeeUser` varchar(16) NOT NULL,
+  `invoiceStatus` bit NOT NULL,
   PRIMARY KEY (`invoiceId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
@@ -33,7 +34,7 @@ CREATE TABLE `InvoiceDetail` (
 CREATE TABLE `Product` (
   `productId` int NOT NULL AUTO_INCREMENT,
   `productName` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `unitPrice` int NOT NULL,
+  `unitPrice` double NOT NULL,
   `typeId` int NOT NULL,
   PRIMARY KEY (`productId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;

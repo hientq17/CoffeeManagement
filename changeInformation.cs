@@ -28,24 +28,28 @@ namespace CoffeeManagement {
         private void btnEmployeeOK_Click(object sender, EventArgs e) {
             string empName = txtEmployeeName.Text;
             if (empName.Length == 0) {
-                MessageBox.Show("Vui lòng nhập tên");
+                MessageBox.Show("Vui lòng nhập tên!","Chưa nhập tên",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.ActiveControl = txtEmployeeName;
                 return;
             }
             if (txtNewPassword.Enabled == true) {
                 string newPass = txtNewPassword.Text;
                 if (newPass.Length < 8) {
-                    MessageBox.Show("Mật khẩu phải có độ dài từ 8 kí tự trở lên");
+                    MessageBox.Show("Mật khẩu phải bao gồm 8 kí tự trở lên!", "Mật khẩu không hợp lệ",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     this.ActiveControl = txtNewPassword;
                     return;
                 }
                 if (!txtRepeatPassword.Text.Equals(newPass)) {
-                    MessageBox.Show("Nhập lại mật khẩu không trùng");
+                    MessageBox.Show("Vui lòng nhập lại mật khẩu trùng với mật khẩu!", "Mật khẩu không trùng nhau",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     this.ActiveControl = txtRepeatPassword;
                     return;
                 }
                 if (AccountDAO.Instance.UpdateAdmin(empName, newPass)) {
-                    MessageBox.Show("Cập nhật thông tin thành công!");
+                    MessageBox.Show("Cập nhật thông tin thành công!", "Thành công",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                     txtOldPassword.Text = "";
                     txtNewPassword.Text = "";
                     txtRepeatPassword.Text = "";
@@ -54,7 +58,8 @@ namespace CoffeeManagement {
                 }
             } else {
                 if (AccountDAO.Instance.UpdateAdmin(empName)) {
-                    MessageBox.Show("Cập nhật thông tin thành công!");
+                    MessageBox.Show("Cập nhật thông tin thành công!","Thành công",
+                        MessageBoxButtons.OK,MessageBoxIcon.Information);
                 }
             }
         }
@@ -65,7 +70,8 @@ namespace CoffeeManagement {
 
         private void btnCheck_Click(object sender, EventArgs e) {
             if (!txtOldPassword.Text.Equals(account.Password)) {
-                MessageBox.Show("Mật khẩu không đúng!");
+                MessageBox.Show("Vui lòng nhập lại mật khẩu!", "Mật khẩu không đúng",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             txtRepeatPassword.Enabled = true;
