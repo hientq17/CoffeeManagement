@@ -597,6 +597,11 @@ namespace CoffeeManagement
         private void btnChangePassword_Click(object sender, EventArgs e) {
 
         }
+
+        private void fAdmin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
 
