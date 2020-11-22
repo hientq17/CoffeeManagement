@@ -226,7 +226,7 @@ namespace CoffeeManagement
         #region event
         private void thôngTinToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            fAccount f = new fAccount(username);
+            fInformation f = new fInformation(username);
             this.Hide();
             f.ShowDialog();
             this.Show();
