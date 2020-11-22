@@ -43,7 +43,6 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel3 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lbTotal = new System.Windows.Forms.Label();
             this.btnConfirm = new System.Windows.Forms.Button();
@@ -101,15 +100,17 @@
             // 
             // thôngTinToolStripMenuItem
             // 
+            this.thôngTinToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("thôngTinToolStripMenuItem.Image")));
             this.thôngTinToolStripMenuItem.Name = "thôngTinToolStripMenuItem";
-            this.thôngTinToolStripMenuItem.Size = new System.Drawing.Size(220, 26);
+            this.thôngTinToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.thôngTinToolStripMenuItem.Text = "Thông tin tài khoản";
             this.thôngTinToolStripMenuItem.Click += new System.EventHandler(this.thôngTinToolStripMenuItem_Click);
             // 
             // đăngXuấtToolStripMenuItem
             // 
+            this.đăngXuấtToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("đăngXuấtToolStripMenuItem.Image")));
             this.đăngXuấtToolStripMenuItem.Name = "đăngXuấtToolStripMenuItem";
-            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(220, 26);
+            this.đăngXuấtToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.đăngXuấtToolStripMenuItem.Text = "Đăng xuất";
             this.đăngXuấtToolStripMenuItem.Click += new System.EventHandler(this.đăngXuấtToolStripMenuItem_Click);
             // 
@@ -120,7 +121,6 @@
             this.cbxCategory.Name = "cbxCategory";
             this.cbxCategory.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.cbxCategory.Size = new System.Drawing.Size(429, 24);
-            this.cbxCategory.Sorted = true;
             this.cbxCategory.TabIndex = 0;
             this.cbxCategory.SelectedIndexChanged += new System.EventHandler(this.cbxCategory_SelectedIndexChanged);
             // 
@@ -176,7 +176,6 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Controls.Add(this.lbTotal);
             this.panel3.Controls.Add(this.btnConfirm);
@@ -185,24 +184,14 @@
             this.panel3.Size = new System.Drawing.Size(457, 84);
             this.panel3.TabIndex = 2;
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(268, 25);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(77, 32);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "VND";
-            this.label2.Visible = false;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.MidnightBlue;
             this.label1.Location = new System.Drawing.Point(14, 23);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 32);
+            this.label1.Size = new System.Drawing.Size(72, 26);
             this.label1.TabIndex = 5;
             this.label1.Text = "Tổng:";
             this.label1.Visible = false;
@@ -210,21 +199,24 @@
             // lbTotal
             // 
             this.lbTotal.AutoSize = true;
-            this.lbTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTotal.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTotal.ForeColor = System.Drawing.Color.MidnightBlue;
             this.lbTotal.Location = new System.Drawing.Point(113, 23);
             this.lbTotal.Name = "lbTotal";
-            this.lbTotal.Size = new System.Drawing.Size(32, 32);
+            this.lbTotal.Size = new System.Drawing.Size(24, 26);
             this.lbTotal.TabIndex = 4;
             this.lbTotal.Text = "0";
             this.lbTotal.Visible = false;
             // 
             // btnConfirm
             // 
+            this.btnConfirm.FlatAppearance.BorderSize = 0;
+            this.btnConfirm.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfirm.Image = ((System.Drawing.Image)(resources.GetObject("btnConfirm.Image")));
             this.btnConfirm.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnConfirm.Location = new System.Drawing.Point(351, 15);
+            this.btnConfirm.Location = new System.Drawing.Point(334, 15);
             this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(103, 54);
+            this.btnConfirm.Size = new System.Drawing.Size(120, 54);
             this.btnConfirm.TabIndex = 1;
             this.btnConfirm.Text = "In Order";
             this.btnConfirm.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -240,17 +232,19 @@
             this.panel4.Controls.Add(this.btnAdd);
             this.panel4.Location = new System.Drawing.Point(448, 12);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(463, 70);
+            this.panel4.Size = new System.Drawing.Size(463, 86);
             this.panel4.TabIndex = 3;
             // 
             // btnCancel
             // 
+            this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(5, 9);
+            this.btnCancel.Location = new System.Drawing.Point(18, 11);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(110, 54);
+            this.btnCancel.Size = new System.Drawing.Size(121, 54);
             this.btnCancel.TabIndex = 4;
             this.btnCancel.Text = "Hủy order";
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -261,17 +255,19 @@
             // lbTable
             // 
             this.lbTable.AutoSize = true;
-            this.lbTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTable.Location = new System.Drawing.Point(115, 28);
+            this.lbTable.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTable.ForeColor = System.Drawing.Color.DarkGreen;
+            this.lbTable.Location = new System.Drawing.Point(173, 57);
             this.lbTable.Name = "lbTable";
-            this.lbTable.Size = new System.Drawing.Size(0, 32);
+            this.lbTable.Size = new System.Drawing.Size(24, 26);
             this.lbTable.TabIndex = 3;
+            this.lbTable.Text = "0";
             // 
             // nmFoodCount
             // 
-            this.nmFoodCount.Location = new System.Drawing.Point(291, 26);
+            this.nmFoodCount.Location = new System.Drawing.Point(336, 26);
             this.nmFoodCount.Name = "nmFoodCount";
-            this.nmFoodCount.Size = new System.Drawing.Size(95, 22);
+            this.nmFoodCount.Size = new System.Drawing.Size(50, 22);
             this.nmFoodCount.TabIndex = 2;
             this.nmFoodCount.Visible = false;
             // 
@@ -293,7 +289,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(922, 450);
+            this.ClientSize = new System.Drawing.Size(938, 450);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
@@ -338,7 +334,6 @@
         private System.Windows.Forms.Label lbTotal;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbTable;
         private System.Windows.Forms.ColumnHeader ID;

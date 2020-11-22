@@ -258,7 +258,7 @@
             this.pbProductImage.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pbProductImage.ErrorImage")));
             this.pbProductImage.InitialImage = ((System.Drawing.Image)(resources.GetObject("pbProductImage.InitialImage")));
             this.pbProductImage.Location = new System.Drawing.Point(110, 9);
-            this.pbProductImage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbProductImage.Margin = new System.Windows.Forms.Padding(4);
             this.pbProductImage.Name = "pbProductImage";
             this.pbProductImage.Size = new System.Drawing.Size(133, 123);
             this.pbProductImage.TabIndex = 2;
@@ -601,7 +601,7 @@
             // 
             this.cbbEmployee.FormattingEnabled = true;
             this.cbbEmployee.Location = new System.Drawing.Point(402, 39);
-            this.cbbEmployee.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbbEmployee.Margin = new System.Windows.Forms.Padding(4);
             this.cbbEmployee.Name = "cbbEmployee";
             this.cbbEmployee.Size = new System.Drawing.Size(255, 24);
             this.cbbEmployee.TabIndex = 3;
@@ -700,7 +700,7 @@
             this.tpType.Controls.Add(this.panel6);
             this.tpType.Controls.Add(this.panel4);
             this.tpType.Location = new System.Drawing.Point(4, 25);
-            this.tpType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpType.Margin = new System.Windows.Forms.Padding(4);
             this.tpType.Name = "tpType";
             this.tpType.Size = new System.Drawing.Size(1000, 493);
             this.tpType.TabIndex = 3;
@@ -714,7 +714,7 @@
             this.panel6.Controls.Add(this.panelTypeButton);
             this.panel6.Controls.Add(this.panelTypeOK);
             this.panel6.Location = new System.Drawing.Point(595, 32);
-            this.panel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel6.Margin = new System.Windows.Forms.Padding(4);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(397, 238);
             this.panel6.TabIndex = 1;
@@ -884,7 +884,7 @@
             // 
             this.panel4.Controls.Add(this.dataGridViewProducType);
             this.panel4.Location = new System.Drawing.Point(4, 4);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(583, 474);
             this.panel4.TabIndex = 0;
@@ -903,7 +903,7 @@
             this.typeName});
             this.dataGridViewProducType.DataSource = this.productTypeBindingSource;
             this.dataGridViewProducType.Location = new System.Drawing.Point(5, 28);
-            this.dataGridViewProducType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewProducType.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewProducType.Name = "dataGridViewProducType";
             this.dataGridViewProducType.ReadOnly = true;
             this.dataGridViewProducType.RowHeadersVisible = false;
@@ -941,7 +941,7 @@
             this.tpEmployee.Controls.Add(this.dataGridViewEmployee);
             this.tpEmployee.ForeColor = System.Drawing.Color.Black;
             this.tpEmployee.Location = new System.Drawing.Point(4, 25);
-            this.tpEmployee.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tpEmployee.Margin = new System.Windows.Forms.Padding(4);
             this.tpEmployee.Name = "tpEmployee";
             this.tpEmployee.Size = new System.Drawing.Size(1000, 493);
             this.tpEmployee.TabIndex = 2;
@@ -953,9 +953,9 @@
             this.groupBox1.Controls.Add(this.btnChangeInformation);
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(597, 380);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(389, 98);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
@@ -973,7 +973,7 @@
             this.btnChangeInformation.Image = ((System.Drawing.Image)(resources.GetObject("btnChangeInformation.Image")));
             this.btnChangeInformation.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnChangeInformation.Location = new System.Drawing.Point(184, 30);
-            this.btnChangeInformation.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnChangeInformation.Margin = new System.Windows.Forms.Padding(4);
             this.btnChangeInformation.Name = "btnChangeInformation";
             this.btnChangeInformation.Size = new System.Drawing.Size(180, 48);
             this.btnChangeInformation.TabIndex = 0;
@@ -991,7 +991,7 @@
             this.panel13.Controls.Add(this.panelEmployeeButton);
             this.panel13.Controls.Add(this.panelEmployeeOK);
             this.panel13.Location = new System.Drawing.Point(596, 25);
-            this.panel13.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel13.Margin = new System.Windows.Forms.Padding(4);
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(397, 348);
             this.panel13.TabIndex = 2;
@@ -1014,7 +1014,7 @@
             "Thu ngân",
             "Pha chế"});
             this.cbbRoleId.Location = new System.Drawing.Point(119, 9);
-            this.cbbRoleId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbbRoleId.Margin = new System.Windows.Forms.Padding(4);
             this.cbbRoleId.Name = "cbbRoleId";
             this.cbbRoleId.Size = new System.Drawing.Size(240, 24);
             this.cbbRoleId.TabIndex = 2;
@@ -1236,7 +1236,7 @@
             this.roleId});
             this.dataGridViewEmployee.DataSource = this.productTypeBindingSource;
             this.dataGridViewEmployee.Location = new System.Drawing.Point(4, 25);
-            this.dataGridViewEmployee.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dataGridViewEmployee.Margin = new System.Windows.Forms.Padding(4);
             this.dataGridViewEmployee.Name = "dataGridViewEmployee";
             this.dataGridViewEmployee.ReadOnly = true;
             this.dataGridViewEmployee.RowHeadersVisible = false;
@@ -1566,7 +1566,7 @@
             this.Name = "fAdmin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý";
-            this.Load += new System.EventHandler(this.fAdmin_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fAdmin_FormClosing);
             this.tpFood.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
