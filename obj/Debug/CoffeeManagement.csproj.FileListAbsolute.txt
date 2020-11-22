@@ -12,7 +12,6 @@ C:\Users\nhoch\Desktop\ProjectPRN\obj\Debug\CoffeeManagement.exe
 C:\Users\nhoch\Desktop\ProjectPRN\obj\Debug\CoffeeManagement.pdb
 C:\Users\nhoch\Desktop\ProjectPRN\obj\Debug\CoffeeManagement.fAdmin.resources
 D:\C#\Coffee-management\obj\Debug\CoffeeManagement.csprojAssemblyReference.cache
-D:\C#\Coffee-management\obj\Debug\CoffeeManagement.fAccount.resources
 D:\C#\Coffee-management\obj\Debug\CoffeeManagement.fAdmin.resources
 D:\C#\Coffee-management\obj\Debug\CoffeeManagement.fLogin.resources
 D:\C#\Coffee-management\obj\Debug\CoffeeManagement.Properties.Resources.resources
@@ -166,6 +165,6 @@ D:\Code\C#\CoffeeManagement\obj\Debug\CoffeeManagement.csproj.CoreCompileInputs.
 D:\Code\C#\CoffeeManagement\obj\Debug\CoffeeManagement.csproj.CopyComplete
 D:\Code\C#\CoffeeManagement\obj\Debug\CoffeeManagement.exe
 D:\Code\C#\CoffeeManagement\obj\Debug\CoffeeManagement.pdb
-D:\C#\Coffee-management\obj\Debug\CoffeeManagement.changeInformation.resources
 D:\C#\Coffee-management\obj\Debug\CoffeeManagement.fKitchen.resources
 D:\Code\C#\CoffeeManagement\obj\Debug\CoffeeManagement.fInformation.resources
+D:\C#\Coffee-Management\obj\Debug\CoffeeManagement.fInformation.resources

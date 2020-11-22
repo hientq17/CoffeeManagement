@@ -594,8 +594,11 @@ namespace CoffeeManagement
             changeInformation.Show();
         }
 
-        private void btnChangePassword_Click(object sender, EventArgs e) {
-
+        private void fAdmin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Bạn muốn đăng xuất ?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (dr == DialogResult.No)
+                e.Cancel = true;
         }
     }
 

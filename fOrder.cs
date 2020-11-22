@@ -20,6 +20,8 @@ namespace CoffeeManagement
         private List<Product> listProduct;
         private List<ProductType> listProductType;
         private string username;
+        Image waitingImage = Image.FromFile("../../Icons/waitingTable.png");
+        Image emptyImage = Image.FromFile("../../Icons/emptyTable.png");
         public fOrder(string username)
         {
             InitializeComponent();
@@ -43,7 +45,6 @@ namespace CoffeeManagement
             lbTable.Visible = false;
             lbTotal.Visible = false;
             label1.Visible = false;
-            label2.Visible = false;
             btnAdd.Visible = false;
             nmFoodCount.Visible = false;
             cbxCategory.Visible = false;
@@ -51,16 +52,19 @@ namespace CoffeeManagement
             foreach (CoffeeTable item in tableList)
             {
                 Button btn = new Button() { Width = CoffeeTableDAO.TableWidth, Height = CoffeeTableDAO.TableHeight };
-                btn.Text = item.ID + Environment.NewLine + item.Status;
+                btn.Text = item.ID + Environment.NewLine +" "+item.Status;
                 btn.Click += btnTable_Click;
                 btn.Tag = item;
+                btn.BackColor = SystemColors.Control;
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderSize = 0;
                 if (item.Status.Equals("Trống"))
                 {
-                    btn.BackColor = Color.Aqua;
+                    btn.Image = emptyImage;
                 }
                 else
                 {
-                    btn.BackColor = Color.LightPink;
+                    btn.Image = waitingImage;
                 }
                 flpTable.Controls.Add(btn);
             }
@@ -78,17 +82,20 @@ namespace CoffeeManagement
             foreach (CoffeeTable item in tableList)
             {
                 Button btn = new Button() { Width = CoffeeTableDAO.TableWidth, Height = CoffeeTableDAO.TableHeight };
-                btn.Text = item.ID + Environment.NewLine + item.Status;
+                btn.Text = item.ID + Environment.NewLine + " "+ item.Status;
                 btn.Click += btnTable_Click;
                 btn.Tag = item;
+                btn.BackColor = SystemColors.Control;
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderSize = 0;
                 if (item.Status.Equals("Trống"))
                 {
-                    btn.BackColor = Color.Aqua;
+                    btn.Image = emptyImage;
                     listViewInvoice.Items.Clear();
                 }
                 else
                 {
-                    btn.BackColor = Color.LightPink;  
+                    btn.Image = waitingImage;
                 }
                 flpTable.Controls.Add(btn);
             }
@@ -140,36 +147,20 @@ namespace CoffeeManagement
             flpTable.Controls.Clear();
             cbxCategory.Visible = true;
             cbxCategory.Items.Clear();
+            cbxCategory.Items.Add("Tất cả");
             foreach (ProductType item in listProductType)
             {
-                cbxCategory.Items.Add(item.ProductTypeName);
+                cbxCategory.Items.Add(item);
             }
-            foreach (Product item in listProduct)
-            {
-                FlowLayoutPanel panel = new FlowLayoutPanel() { Width = ProductDAO.ProductWidth+5, Height = ProductDAO.ProductHeight+40 };
-                Button btn = new Button() { Width = ProductDAO.ProductWidth, Height = ProductDAO.ProductHeight };
-                Label label = new Label() { Width = ProductDAO.ProductWidth, Height = 40 };
-                label.Text = item.ProductName + Environment.NewLine + item.UnitPrice + " VND";
-                byte[] img = item.ProductImg;
-                MemoryStream ms = new MemoryStream(img);
-                btn.Image = Image.FromStream(ms);
-                btn.ImageAlign = ContentAlignment.MiddleCenter;
-                btn.TextAlign = ContentAlignment.BottomCenter;
-                btn.Click += btnProduct_Click;
-                btn.Tag = item;
-                panel.Controls.Add(btn);
-                panel.Controls.Add(label);
-                flpTable.Controls.Add(panel);
-            }
+            cbxCategory.SelectedIndex = 0;
         }
 
-        private void LoadMenuByCategory(string category)
+        private void LoadMenuByCategory(int productTypeId)
         {
             flpTable.Controls.Clear();
             foreach (Product item in listProduct)
             {
-                string typeName = ProductDAO.Instance.getTypeNameByTypeId(item.TypeId);
-                if (typeName.Equals(category))
+                if (item.ProductID==productTypeId)
                 {
                     FlowLayoutPanel panel = new FlowLayoutPanel() { Width = ProductDAO.ProductWidth, Height = ProductDAO.ProductHeight + 40 };
                     Button btn = new Button() { Width = ProductDAO.ProductWidth, Height = ProductDAO.ProductHeight };
@@ -269,7 +260,6 @@ namespace CoffeeManagement
             lbTable.Visible = true;
             lbTotal.Visible = true;
             label1.Visible = true;
-            label2.Visible = true;
             ShowBill(tableID);
             if (status.Equals("Trống"))
             {
@@ -361,8 +351,29 @@ namespace CoffeeManagement
 
         private void cbxCategory_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string category = cbxCategory.SelectedItem.ToString();
-            LoadMenuByCategory(category);
+            if (cbxCategory.SelectedIndex == 0)
+            {
+                foreach (Product item in listProduct)
+                {
+                    FlowLayoutPanel panel = new FlowLayoutPanel() { Width = ProductDAO.ProductWidth + 5, Height = ProductDAO.ProductHeight + 40 };
+                    Button btn = new Button() { Width = ProductDAO.ProductWidth, Height = ProductDAO.ProductHeight };
+                    Label label = new Label() { Width = ProductDAO.ProductWidth, Height = 40 };
+                    label.Text = item.ProductName + Environment.NewLine + item.UnitPrice + " VND";
+                    byte[] img = item.ProductImg;
+                    MemoryStream ms = new MemoryStream(img);
+                    btn.Image = Image.FromStream(ms);
+                    btn.ImageAlign = ContentAlignment.MiddleCenter;
+                    btn.TextAlign = ContentAlignment.BottomCenter;
+                    btn.Click += btnProduct_Click;
+                    btn.Tag = item;
+                    panel.Controls.Add(btn);
+                    panel.Controls.Add(label);
+                    flpTable.Controls.Add(panel);
+                }
+                return;
+            }
+            ProductType category = (ProductType)cbxCategory.SelectedItem;
+            LoadMenuByCategory(category.ProductTypeId);
         }
 
         private void đăngXuấtToolStripMenuItem_Click(object sender, EventArgs e)
