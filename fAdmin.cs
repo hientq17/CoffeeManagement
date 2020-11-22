@@ -590,7 +590,7 @@ namespace CoffeeManagement
         }
 
         private void btnChangeInformation_Click(object sender, EventArgs e) {
-            changeInformation changeInformation = new changeInformation();
+            fInformation changeInformation = new fInformation("admin");
             changeInformation.Show();
         }
 

@@ -11,12 +11,20 @@ using CoffeeManagement.DAO;
 using CoffeeManagement.DTO;
 
 namespace CoffeeManagement {
-    public partial class changeInformation : Form {
+    public partial class fInformation : Form {
 
-        Account account = AccountDAO.Instance.GetAdmin();
+        Account account;
 
-        public changeInformation() {
+        private string username;
+
+        public fInformation(string Username) {
             InitializeComponent();
+            this.username = Username;
+            if (username.Equals("admin")) {
+                account = AccountDAO.Instance.GetAdmin();
+            } else {
+                account =AccountDAO.Instance.GetAccount(username);
+            }
             loadData();
         }
 
@@ -26,6 +34,7 @@ namespace CoffeeManagement {
         }
 
         private void btnEmployeeOK_Click(object sender, EventArgs e) {
+            bool stt = false;
             string empName = txtEmployeeName.Text;
             if (empName.Length == 0) {
                 MessageBox.Show("Vui lòng nhập tên!","Chưa nhập tên",
@@ -47,20 +56,30 @@ namespace CoffeeManagement {
                     this.ActiveControl = txtRepeatPassword;
                     return;
                 }
-                if (AccountDAO.Instance.UpdateAdmin(empName, newPass)) {
-                    MessageBox.Show("Cập nhật thông tin thành công!", "Thành công",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    txtOldPassword.Text = "";
-                    txtNewPassword.Text = "";
-                    txtRepeatPassword.Text = "";
-                    txtRepeatPassword.Enabled = false;
-                    txtNewPassword.Enabled = false;
+                if (username.Equals("admin")){
+                    stt = AccountDAO.Instance.UpdateAdmin(empName, newPass);
+                } else {
+                    stt = AccountDAO.Instance.UpdateAccount(username,newPass,empName);
                 }
+
             } else {
-                if (AccountDAO.Instance.UpdateAdmin(empName)) {
-                    MessageBox.Show("Cập nhật thông tin thành công!","Thành công",
-                        MessageBoxButtons.OK,MessageBoxIcon.Information);
+                if (username.Equals("admin")) {
+                    stt = AccountDAO.Instance.UpdateAdmin(empName);
+                } else {
+                    stt = AccountDAO.Instance.UpdateAccount(username, account.Password, empName);
                 }
+            }
+            if (stt) {
+                MessageBox.Show("Cập nhật thông tin thành công!", "Thành công",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtOldPassword.Text = "";
+                txtNewPassword.Text = "";
+                txtRepeatPassword.Text = "";
+                txtRepeatPassword.Enabled = false;
+                txtNewPassword.Enabled = false;
+            } else {
+                MessageBox.Show("Có lỗi xảy xa!", "Lỗi",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

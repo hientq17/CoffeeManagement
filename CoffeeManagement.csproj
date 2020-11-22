@@ -92,11 +92,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="changeInformation.cs">
+    <Compile Include="fInformation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="changeInformation.Designer.cs">
-      <DependentUpon>changeInformation.cs</DependentUpon>
+    <Compile Include="fInformation.Designer.cs">
+      <DependentUpon>fInformation.cs</DependentUpon>
     </Compile>
     <Compile Include="DAO\AccountDAO.cs" />
     <Compile Include="DAO\CoffeeTableDAO.cs" />
@@ -110,12 +110,6 @@
     <Compile Include="DTO\InvoiceDetail.cs" />
     <Compile Include="DTO\Product.cs" />
     <Compile Include="DTO\ProductType.cs" />
-    <Compile Include="fAccount.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="fAccount.Designer.cs">
-      <DependentUpon>fAccount.cs</DependentUpon>
-    </Compile>
     <Compile Include="fAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,11 +136,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="changeInformation.resx">
-      <DependentUpon>changeInformation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="fAccount.resx">
-      <DependentUpon>fAccount.cs</DependentUpon>
+    <EmbeddedResource Include="fInformation.resx">
+      <DependentUpon>fInformation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fAdmin.resx">
       <DependentUpon>fAdmin.cs</DependentUpon>
