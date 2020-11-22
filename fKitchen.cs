@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,7 @@ namespace CoffeeManagement {
     public partial class fKitchen : Form {
         private string username;
         private List<CoffeeTable> tableList;
+        Image tableImage = Image.FromFile("../../Icons/table.png");
 
         private void flpTable_Paint(object sender, PaintEventArgs e) {
 
@@ -39,9 +41,6 @@ namespace CoffeeManagement {
                 foreach (InvoiceDetail invoiceDetail in listInvoiceDetail) {
                     ListViewItem lsvItem = new ListViewItem(invoiceDetail.ProductName.ToString());
                     lsvItem.SubItems.Add(invoiceDetail.Count.ToString());
-                    lsvItem.SubItems.Add(invoiceDetail.Price.ToString());
-                    lsvItem.SubItems.Add(invoiceDetail.TotalPrice.ToString());
-                    lsvItem.SubItems.Add(invoiceDetail.ProductId.ToString());
                     lsvItem.SubItems.Add(item.ID.ToString());
                     listViewInvoice.Items.Add(lsvItem);
                 }
@@ -51,18 +50,24 @@ namespace CoffeeManagement {
         private void LoadTable() {
             flpTable.Controls.Clear();
             tableList = CoffeeTableDAO.Instance.LoadTableListOrderByTime();
-            Button btnAll = new Button() { Width = CoffeeTableDAO.TableWidth, Height = CoffeeTableDAO.TableHeight };
+            Button btnAll = new Button() { Width = CoffeeTableDAO.TableWidth, Height = CoffeeTableDAO.TableHeight};
             btnAll.Text = "Tất cả";
             btnAll.Click += btnAll_Click;
-            btnAll.BackColor = Color.Red;
+            btnAll.BackColor = SystemColors.Control;
+            btnAll.FlatStyle = FlatStyle.Flat;
+            btnAll.Image = tableImage;
+            btnAll.FlatAppearance.BorderSize = 0;
             flpTable.Controls.Add(btnAll);
             foreach (CoffeeTable item in tableList) {
                 if (item.Status.Equals("Đang đợi")) {
-                    Button btn = new Button() { Width = CoffeeTableDAO.TableWidth, Height = CoffeeTableDAO.TableHeight };
-                    btn.Text = item.ID + Environment.NewLine + item.Status;
+                    Button btn = new Button() { Width = CoffeeTableDAO.TableWidth, Height = CoffeeTableDAO.TableHeight};
+                    btn.Text = "Bàn "+item.ID;
                     btn.Click += btnTable_Click;
                     btn.Tag = item;
-                    btn.BackColor = Color.LightPink;
+                    btn.BackColor = SystemColors.Control;
+                    btn.FlatStyle = FlatStyle.Flat;
+                    btn.Image = tableImage;
+                    btn.FlatAppearance.BorderSize = 0;
                     flpTable.Controls.Add(btn);
                 }
             }
@@ -77,9 +82,6 @@ namespace CoffeeManagement {
             foreach (InvoiceDetail item in listInvoiceDetail) {
                 ListViewItem lsvItem = new ListViewItem(item.ProductName.ToString());
                 lsvItem.SubItems.Add(item.Count.ToString());
-                lsvItem.SubItems.Add(item.Price.ToString());
-                lsvItem.SubItems.Add(item.TotalPrice.ToString());
-                lsvItem.SubItems.Add(item.ProductId.ToString());
                 lsvItem.SubItems.Add(id.ToString());
                 listViewInvoice.Items.Add(lsvItem);
             }
@@ -105,9 +107,6 @@ namespace CoffeeManagement {
                     foreach (InvoiceDetail invoiceDetail in listInvoiceDetail) {
                         ListViewItem lsvItem = new ListViewItem(invoiceDetail.ProductName.ToString());
                         lsvItem.SubItems.Add(invoiceDetail.Count.ToString());
-                        lsvItem.SubItems.Add(invoiceDetail.Price.ToString());
-                        lsvItem.SubItems.Add(invoiceDetail.TotalPrice.ToString());
-                        lsvItem.SubItems.Add(invoiceDetail.ProductId.ToString());
                         lsvItem.SubItems.Add(item.ID.ToString());
                         listViewInvoice.Items.Add(lsvItem);
                     }
@@ -137,7 +136,8 @@ namespace CoffeeManagement {
         private void btnHoanThanh_Click(object sender, EventArgs e) {
             if (listViewInvoice.Items.Count < 1)
             {
-                MessageBox.Show("Vui lòng chọn bàn!!!");
+                MessageBox.Show("Vui lòng chọn bàn!!!", "Chưa chọn bàn",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             int tableID = Convert.ToInt32(lbTable.Text.Substring(4));
@@ -146,14 +146,15 @@ namespace CoffeeManagement {
 
             if (CoffeeTableDAO.Instance.UpdateTable(tableID) != false &&
             InvoiceDAO.Instance.UpdateInvoice(invoiceId) != false) {
-                MessageBox.Show("Xác nhận hoàn thành thành công. Đã gửi thông tin về order!!");
+                MessageBox.Show("Xác nhận hoàn thành thành công. \n Đã gửi thông tin về order!!",
+                    "Xác nhận thành công",MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadTable();
                 LoadTotal();
             }
         }
         private void thôngTinToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            fAccount f = new fAccount(username);
+            fInformation f = new fInformation(username);
             this.Hide();
             f.ShowDialog();
             this.Show();
@@ -161,7 +162,8 @@ namespace CoffeeManagement {
 
         private void fKitchen_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult dr = MessageBox.Show("Bạn muốn đăng xuất ?", "Title", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            DialogResult dr = MessageBox.Show("Bạn muốn đăng xuất ?", "Title", 
+                MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             if (dr == DialogResult.No)
                 e.Cancel = true;
 

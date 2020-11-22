@@ -156,8 +156,6 @@ D:\Code\C#\CoffeeManagement\bin\Debug\System.Memory.xml
 D:\Code\C#\CoffeeManagement\bin\Debug\System.Numerics.Vectors.xml
 D:\Code\C#\CoffeeManagement\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 D:\Code\C#\CoffeeManagement\obj\Debug\CoffeeManagement.csprojAssemblyReference.cache
-D:\Code\C#\CoffeeManagement\obj\Debug\CoffeeManagement.changeInformation.resources
-D:\Code\C#\CoffeeManagement\obj\Debug\CoffeeManagement.fAccount.resources
 D:\Code\C#\CoffeeManagement\obj\Debug\CoffeeManagement.fAdmin.resources
 D:\Code\C#\CoffeeManagement\obj\Debug\CoffeeManagement.fLogin.resources
 D:\Code\C#\CoffeeManagement\obj\Debug\CoffeeManagement.fOrder.resources
@@ -170,3 +168,4 @@ D:\Code\C#\CoffeeManagement\obj\Debug\CoffeeManagement.exe
 D:\Code\C#\CoffeeManagement\obj\Debug\CoffeeManagement.pdb
 D:\C#\Coffee-management\obj\Debug\CoffeeManagement.changeInformation.resources
 D:\C#\Coffee-management\obj\Debug\CoffeeManagement.fKitchen.resources
+D:\Code\C#\CoffeeManagement\obj\Debug\CoffeeManagement.fInformation.resources
