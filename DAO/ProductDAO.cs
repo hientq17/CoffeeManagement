@@ -6,9 +6,8 @@ using System.Data;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
-using CoffeeManagement.DTO;
 
-namespace CoffeeManagement.DAO {
+namespace CoffeeManagement {
     class ProductDAO {
 
         public static int ProductWidth = 90;
