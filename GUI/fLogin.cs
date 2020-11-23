@@ -73,5 +73,10 @@ namespace CoffeeManagement
         {
             return AccountDAO.Instance.Login(username, password);
         }
+
+        private void txtLogin_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
