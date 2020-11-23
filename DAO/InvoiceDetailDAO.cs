@@ -1,4 +1,4 @@
-﻿using CoffeeManagement.DTO;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoffeeManagement.DAO
+namespace CoffeeManagement
 {
     class InvoiceDetailDAO
     {
@@ -32,6 +32,13 @@ namespace CoffeeManagement.DAO
                 listInvoiceDetail.Add(InvoiceDetail);
             }
             return listInvoiceDetail;
+        }
+
+        public DataTable GetListInvoiceDetailReport(int id) {
+            string query = "select Product.productName, InvoiceDetail.productAmount, unitPrice, totalPrice " +
+                " from InvoiceDetail inner join Product on InvoiceDetail.productId=Product.productId where InvoiceDetail.invoiceId = " + id;
+            DataTable data = ConnectDB.Instance.ExecuteQuery(query);
+            return data;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using CoffeeManagement.DTO;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 
-namespace CoffeeManagement.DAO
+namespace CoffeeManagement
 {
 
     
@@ -86,5 +86,14 @@ namespace CoffeeManagement.DAO
             DataTable invoiceList = ConnectDB.Instance.ExecuteQuery(query);
             return invoiceList;
         }
+
+        public Invoice GetInvoiceReport(int id) {
+            DataTable data = ConnectDB.Instance.ExecuteQuery(
+                "Select invoiceId,tableId,dateSale,totalPayment,employeeName as employeeUser,invoiceStatus from Invoice" +
+                " inner join Employee on Invoice.employeeUser = Employee.employeeUser where invoiceId = " + id);
+            Invoice invoice = new Invoice(data.Rows[0]);
+            return invoice;
+        }
+
     }
 }

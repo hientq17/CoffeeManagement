@@ -5,7 +5,7 @@ using System.Data;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CoffeeManagement.DTO {
+namespace CoffeeManagement {
     class ProductType {
         private int productTypeId;
         private string productTypeName;
