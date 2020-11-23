@@ -35,6 +35,7 @@ namespace CoffeeManagement
         private void loadInvoice() {
             DataTable invoiceList = InvoiceDAO.Instance.getInvoices();
             dataGridViewInvoice.DataSource = invoiceList;
+            txtTotalSales.Text = calculateTotalSales(invoiceList).ToString();
         }
 
         private void dateTimePicker_ValueChanged(object sender, EventArgs e) {
@@ -71,12 +72,36 @@ namespace CoffeeManagement
             }
             DataTable invoiceList = InvoiceDAO.Instance.searchInvoices(strDateFrom, strDateTo, employeeUser);
             dataGridViewInvoice.DataSource = invoiceList;
+            txtTotalSales.Text = calculateTotalSales(invoiceList).ToString();
         }
 
         private void btnReset_Click(object sender, EventArgs e) {
             dateFrom.CustomFormat = "NULL";
             dateTo.CustomFormat = "NULL";
             cbbEmployee.SelectedIndex = 0;
+            loadInvoice();
+        }
+
+        private double calculateTotalSales(DataTable invoiceList) {
+            double totalSales = 0;
+            for (int i = 0; i < invoiceList.Rows.Count; i++) {
+                double payment = double.Parse(invoiceList.Rows[i]["totalPayment"].ToString());
+                totalSales += payment;
+            }
+            return totalSales;
+        }
+
+
+        //Auto refress invoice after 10 seconds
+
+        public void autoRefresh() {
+            Timer timer1 = new System.Windows.Forms.Timer();
+            timer1.Interval = 10000;//10 seconds
+            timer1.Tick += new System.EventHandler(timer1_Tick);
+            timer1.Start();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e) {
             loadInvoice();
         }
 
@@ -398,19 +423,6 @@ namespace CoffeeManagement
         private void dataGridViewProducType_CellContentClick(object sender, DataGridViewCellEventArgs e) {
             txtTypeId.Text = dataGridViewProducType.SelectedRows[0].Cells[0].Value.ToString();
             txtTypeName.Text = dataGridViewProducType.SelectedRows[0].Cells[1].Value.ToString();
-        }
-
-        //Auto refress invoice after 10 seconds
-
-        public void autoRefresh() {
-            Timer timer1 = new System.Windows.Forms.Timer();
-            timer1.Interval = 10000;//2 seconds
-            timer1.Tick += new System.EventHandler(timer1_Tick);
-            timer1.Start();
-        }
-
-        private void timer1_Tick(object sender, EventArgs e) {
-            loadInvoice();
         }
 
         //Tab Employee

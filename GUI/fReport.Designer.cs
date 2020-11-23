@@ -45,6 +45,7 @@
             this.Controls.Add(this.rpViewer);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "fReport";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Hóa đơn thanh toán";
             this.Load += new System.EventHandler(this.ReportViewer_Load);
             this.ResumeLayout(false);
