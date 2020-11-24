@@ -61,7 +61,7 @@ namespace CoffeeManagement
 
         public DataTable getInvoices() {
             string query = "Select invoiceId, tableId, dateSale, totalPayment, employeeName " +
-                "from Invoice inner join Employee on Invoice.employeeUser = Employee.employeeUser";
+                "from Invoice inner join Employee on Invoice.employeeUser = Employee.employeeUser order by invoiceId";
             DataTable invoiceList = ConnectDB.Instance.ExecuteQuery(query);
             return invoiceList;
         }

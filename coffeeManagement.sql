@@ -3,6 +3,7 @@ CREATE TABLE `Employee` (
   `password` varchar(16) NOT NULL,
   `employeeName` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `roleId` int NOT NULL,
+  `employeeStatus` bit NOT NULL,
   PRIMARY KEY (`employeeUser`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -36,12 +37,14 @@ CREATE TABLE `Product` (
   `productName` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `unitPrice` double NOT NULL,
   `typeId` int NOT NULL,
+  `productStatus` bit NOT NULL,
   PRIMARY KEY (`productId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE `ProductType` (
   `typeId` int NOT NULL AUTO_INCREMENT,
   `typeName` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `typeStatus` bit NOT NULL,
   PRIMARY KEY (`typeId`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 

@@ -159,7 +159,7 @@ namespace CoffeeManagement
             flpTable.Controls.Clear();
             foreach (Product item in listProduct)
             {
-                if (item.ProductID==productTypeId)
+                if (item.TypeId==productTypeId)
                 {
                     FlowLayoutPanel panel = new FlowLayoutPanel() { Width = ProductDAO.ProductWidth, Height = ProductDAO.ProductHeight + 40 };
                     Button btn = new Button() { Width = ProductDAO.ProductWidth, Height = ProductDAO.ProductHeight };
