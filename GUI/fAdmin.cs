@@ -28,6 +28,7 @@ namespace CoffeeManagement
             loadComboboxProductType();
             loadProductType();
             loadEmployees();
+            autoRefresh();
         }
 
         //Tab Invoice
